@@ -36,11 +36,11 @@ public class Team {
     @Column(name = "relance", columnDefinition = "INT", nullable = false)
     private Long relance;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "race_id")
     private Race race;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "team-player",
             joinColumns = @JoinColumn(name = "team_id"),

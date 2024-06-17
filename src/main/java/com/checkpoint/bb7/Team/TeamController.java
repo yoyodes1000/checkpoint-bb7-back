@@ -65,10 +65,17 @@ public class TeamController {
     }
 
     @DeleteMapping("/delete/{teamId}/player/{playerId}")
-    public ResponseEntity<Void> deletePlayer(@PathVariable Long teamId, @PathVariable Long playerId) {
-        teamService.deletePlayer(teamId, playerId);
-
-        Team team = teamService.getById(teamId);
-        TeamDTO teamDTO = TeamDTO.mapFromEntity(team);
+    public ResponseEntity<Team> delete(@PathVariable Long teamId,
+                                       @PathVariable Long playerId) {
+        Team newTeam = teamService.deletePlayer(teamId, playerId);
+        return new ResponseEntity<>(newTeam, HttpStatus.NO_CONTENT);
     }
+
+//    @DeleteMapping("/delete/{teamId}/player/{playerId}")
+//    public ResponseEntity<Void> deletePlayer(@PathVariable Long teamId, @PathVariable Long playerId) {
+//        teamService.deletePlayer(teamId, playerId);
+//
+//        Team team = teamService.getById(teamId);
+//        TeamDTO teamDTO = TeamDTO.mapFromEntity(team);
+//    }
 }

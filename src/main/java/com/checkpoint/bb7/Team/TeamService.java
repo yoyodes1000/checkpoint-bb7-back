@@ -69,4 +69,12 @@ public class TeamService {
         teamRepository.deleteById(teamId);
     }
 
+    public Team deletePlayer(Long teamId, Long playerId) {
+        Team team = teamRepository.findById(teamId)
+                .orElseThrow(() -> new EntityNotFoundException("team with id " + teamId + " not found. 😤☹️"));
+        Player player = playerRepository.findById(playerId)
+                .orElseThrow(() -> new EntityNotFoundException("player with id " + playerId + " not found. 😤☹️"));
+        team.getPlayers().remove(player);
+        return teamRepository.save(team);
+    }
 }
