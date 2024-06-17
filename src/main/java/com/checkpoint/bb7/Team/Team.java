@@ -1,9 +1,13 @@
 package com.checkpoint.bb7.Team;
 
+import com.checkpoint.bb7.player.Player;
 import com.checkpoint.bb7.race.Race;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @RequiredArgsConstructor
@@ -35,4 +39,12 @@ public class Team {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "race_id")
     private Race race;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "team-player",
+            joinColumns = @JoinColumn(name = "team_id"),
+            inverseJoinColumns = @JoinColumn(name = "player_id")
+    )
+    private List<Player> players = new ArrayList<>();
 }

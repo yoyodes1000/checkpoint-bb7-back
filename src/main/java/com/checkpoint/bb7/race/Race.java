@@ -25,7 +25,7 @@ public class Race {
     private Long relance;
 
     @Column(name = "apothicaire", nullable = false)
-    private boolean apothicaire = true;
+    private boolean isApothicaire = true;
 
     @OneToMany(mappedBy = "race")
     private List<Player> players = new ArrayList<>();

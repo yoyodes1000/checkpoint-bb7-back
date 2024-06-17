@@ -15,6 +15,7 @@ public class RaceController {
 
     @Autowired
     private RaceService raceService;
+
     @GetMapping("/all")
     public ResponseEntity<List<RaceDTO>> getAll() {
         List<Race> races = raceService.getAll();
